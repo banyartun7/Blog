@@ -21,6 +21,6 @@
         <p class="card-text">
             {{ substr($blog->intro, 0, 100) }}
         </p>
-        <a href="./single.html" class="btn btn-primary">Read More</a>
+        <a href="/blogs/{{$blog->slug}}" class="btn btn-primary">Read More</a>
     </div>
 </div>
