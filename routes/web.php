@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', action: function () {
-    return view('blogs', ['blogs' => Blog::latest()->get()]);//lazy loading with() ka relationship method name yay ya
+    $blogs = Blog::latest();
+    if(request('search')){
+        $blogs = $blogs->where('title', 'LIKE' ,'%'.request('search').'%');
+    }
+    return view('blogs', ['blogs' => $blogs->get(), 'categories' => Category::all()]);//lazy loading with() ka relationship method name yay ya
 });
 
 Route::get('/blogs/{blog:slug}', action: function(Blog $blog){
@@ -24,7 +28,7 @@ Route::get('/blogs/{blog:slug}', action: function(Blog $blog){
 })->where('blog', '[A-z\d\-_]+');
 
 Route::get(uri: '/categories/{category:slug}', action: function(Category $category){
-    return view('blogs', ['blogs' => $category->blog]);
+    return view('blogs', ['blogs' => $category->blog, 'categories' => Category::all(), 'currentCategory' => $category]);
 });
 
 Route::get('/users/{user:username}', function(User $user){
