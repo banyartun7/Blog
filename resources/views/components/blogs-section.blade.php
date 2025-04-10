@@ -47,5 +47,6 @@
         @empty
         <h4 class="text-danger">No blogs found</h4>
         @endforelse
+        {{$blogs->links()}}
     </div>
 </section>
