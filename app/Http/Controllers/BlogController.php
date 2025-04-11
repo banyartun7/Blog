@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class BlogController extends Controller
 {
     public function index(){
-    return view('blogs', ['blogs' => Blog::latest()
+    return view('blogs.index', ['blogs' => Blog::latest()
                             ->filter(request(['search','category','author']))
                             ->paginate(6)
                             ->withQueryString()
@@ -16,6 +16,6 @@ class BlogController extends Controller
     }
 
     public function show(Blog $blog){
-        return view('blog',['blog' => $blog, 'randomBlogs' => Blog::inRandomOrder()->take(3)->get()]);    
+        return view('blogs.show',['blog' => $blog, 'randomBlogs' => Blog::inRandomOrder()->take(3)->get()]);    
     }
 }
