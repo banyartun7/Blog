@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function create()
     {
-        return view('register.create');
+        return view('auth.register');
     }
 
     public function store()
@@ -22,6 +22,33 @@ class AuthController extends Controller
             'password' => 'required|min:8',
         ]);
         $user = User::create($formData);
+        auth()->login($user);
         return redirect('/')->with('status', config('alert.message.create')." $user->name");
+    }
+
+    public function login(){
+        return view('auth.login');
+    }
+
+    public function post_login(){
+        $formData = request()->validate([
+            'email' => ['required','email', 'max:255', Rule::exists('users', 'email')],
+            'password' => ['required', 'min:8', 'max:255']
+        ],
+        [
+            'email.required' => 'We need your email address'
+        ]);
+        if(auth()->attempt($formData)){
+            return redirect('/')->with('status', config('alert.message.login'));
+        }else{
+            return redirect()->back()->withErrors([
+                'email' => 'User Credentials wrong'
+            ]);
+        }
+    }
+
+    public function logout(){
+        auth()->logout();
+        return redirect('/')->with('status', config('alert.message.logout'));
     }
 }
