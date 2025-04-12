@@ -1,8 +1,9 @@
-<div class="card d-flex p-3 my-3 shadow-sm">
+@props(['comment'])
+<x-card-wrapper>
     <div class="d-flex">
         <div>
             <img
-                src="https://i.pravatar.cc/300"
+                src="{{ asset('images/'.$comment->author->avatar) }}"
                 width="50"
                 height="50"
                 class="rounded-circle"
@@ -11,13 +12,14 @@
         </div>
         <div class="ms-3">
             <div class="d-flex align-items-center">
-                <h6>Name</h6>
+                <h6>{{ $comment->author->name }}</h6>
             </div>
-            <p class="text-secondary">11:23</p>
+            <p class="text-secondary">
+                {{$comment->created_at->format("Fj, Y, g:i a")}}
+            </p>
         </div>
     </div>
     <p class="mt-1">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-        accusantium maxime repellendus!
+        {{$comment->body}}
     </p>
-</div>
+</x-card-wrapper>

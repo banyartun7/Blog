@@ -2,6 +2,11 @@
     <x-slot name="title">
         <title>{{ $blog->title }}</title>
     </x-slot>
+    @if (session('status'))
+        <div class="alert alert-success text-center">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-md-6 mx-auto text-center">
@@ -28,10 +33,23 @@
             </div>
         </div>
     </div>
-
-    <x-comments />
-
-    <!-- subscribe new blogs -->
+    @auth
+        <section class="container">
+            <div class="col-md-8 mx-auto">
+                <x-card-wrapper class="bg-light">
+                    <x-comment-form :blog="$blog" />
+                </x-card-wrapper>
+            </div>
+        </section>
+    @endauth
+    @if ($blog->comments->count() > 0)
+        <x-comments :comments="$blog->comments" />
+    @endif
+    @guest
+        <p class="text-center">
+            Please <a href="/login">login</a> into participate in this discussion.
+        </p>
+    @endguest
     <x-subscribe />
 
     <x-blog-you-may-like :randomBlogs="$randomBlogs" />

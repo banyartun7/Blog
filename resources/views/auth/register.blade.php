@@ -13,33 +13,25 @@
                             <label for="name">Name</label>
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control"
                                 id="name" placeholder="Enter name" />
-                            @error('name')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
+                            <x-error name="name" />
                         </div>
                         <div class="form-group mb-4">
                             <label for="username">Username</label>
                             <input name="username" value="{{ old('username') }}" type="text" class="form-control"
                                 id="username" placeholder="Enter username" />
-                            @error('username')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
+                            <x-error name="username" />
                         </div>
                         <div class="form-group mb-4">
                             <label for="exampleInputEmail1">Email address</label>
                             <input name="email" value="{{ old('email') }}" type="email" class="form-control"
                                 id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                            @error('email')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
+                            <x-error name="email" />
                         </div>
                         <div class="form-group mb-4">
                             <label for="exampleInputPassword1">Password</label>
                             <input name="password" type="password" class="form-control" id="exampleInputPassword1"
                                 placeholder="Password" />
-                            @error('password')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
+                            <x-error name="password" />
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Submit
