@@ -29,6 +29,8 @@
         </div>
     </div>
 
+    <x-comments />
+
     <!-- subscribe new blogs -->
     <x-subscribe />
 
