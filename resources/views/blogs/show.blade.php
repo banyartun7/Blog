@@ -27,7 +27,16 @@
                         published - {{ $blog->created_at->diffForHumans() }}
                     </div>
                 </div>
-                <button class="text-white btn btn-warning">Subscribe</button>
+                <form action="/blogs/{{ $blog->slug }}/subscription" method="POST">
+                    @csrf
+                    @auth
+                        @if (auth()->user()->isSubscribed($blog))
+                            <button class="text-white btn btn-danger">Unsubscribe</button>
+                        @else
+                            <button class="text-white btn btn-warning">Subscribe</button>
+                        @endif
+                    @endauth
+                </form>
                 <p class="lh-md mt-3">
                     {{ $blog->body }}
                 </p>

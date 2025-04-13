@@ -7,5 +7,9 @@ return [
     ],
     'comment' => [
         'create' => 'Added your comment'
+    ],
+    'subscribeAlert' => [
+        'subscribe' => 'Subscribed this blog',
+        'unSubscribe' => 'Unsubscribed this blog',
     ]
 ];

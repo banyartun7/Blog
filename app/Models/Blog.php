@@ -49,4 +49,12 @@ class Blog extends Model
     public function subscribers(){
         return $this->belongsToMany(User::class, 'user_blog');
     }
+
+    public function subscribe(){
+        $this->subscribers()->attach(auth()->id());
+    }
+
+    public function unSubscribe(){
+        $this->subscribers()->detach(auth()->id());
+    }
 }
