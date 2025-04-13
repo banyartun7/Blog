@@ -10,5 +10,4 @@
     @endif
     <x-hero_session />
     <x-blogs-section :blogs="$blogs" />
-    <x-subscribe />
 </x-layout>

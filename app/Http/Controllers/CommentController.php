@@ -17,6 +17,6 @@ class CommentController extends Controller
             'user_id' => auth()->id(),
             'blog_id' => $blog->id
         ]);
-        return back()->with('status', config('alert.comment.create'));
+        return redirect('blogs/'.$blog->slug)->with('status', config('alert.comment.create'));
     }
 }

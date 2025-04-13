@@ -27,6 +27,7 @@
                         published - {{ $blog->created_at->diffForHumans() }}
                     </div>
                 </div>
+                <button class="text-white btn btn-warning">Subscribe</button>
                 <p class="lh-md mt-3">
                     {{ $blog->body }}
                 </p>
@@ -43,14 +44,12 @@
         </section>
     @endauth
     @if ($blog->comments->count() > 0)
-        <x-comments :comments="$blog->comments" />
+        <x-comments :comments="$blog->comments()->latest()->paginate(3)" />
     @endif
     @guest
         <p class="text-center">
             Please <a href="/login">login</a> into participate in this discussion.
         </p>
     @endguest
-    <x-subscribe />
-
     <x-blog-you-may-like :randomBlogs="$randomBlogs" />
 </x-layout>
