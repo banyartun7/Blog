@@ -11,5 +11,8 @@ return [
     'subscribeAlert' => [
         'subscribe' => 'Subscribed this blog',
         'unSubscribe' => 'Unsubscribed this blog',
+    ],
+    'blog' => [
+        'create' => 'Blog created successful'
     ]
 ];

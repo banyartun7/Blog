@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\subscribeController;
 
@@ -17,3 +18,6 @@ Route::post('/login', [AuthController::class, 'post_login'])->middleware('guest'
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::post('/blogs/{blog:slug}/comments', [CommentController::class, 'store']);
 Route::post('/blogs/{blog:slug}/subscription', [subscribeController::class, 'subscriptionHandler']);
+
+//Admin Routes
+Route::resource('/admin/blogs', AdminController::class)->middleware('admin');
