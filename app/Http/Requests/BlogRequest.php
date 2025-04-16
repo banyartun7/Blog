@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BlogRequest extends FormRequest
@@ -23,7 +24,8 @@ class BlogRequest extends FormRequest
     {
         return [
             'title' => 'required|min:3',
-            'category_id' => 'required',
+            'slug' => ['required', Rule::unique('blogs', 'slug')],
+            'category_id' => ['required', Rule::exists('categories', 'id')],
             'intro' => 'required|min:4',
             'body' => 'required|min:8',
         ];

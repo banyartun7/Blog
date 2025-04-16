@@ -32,8 +32,8 @@ class AdminController extends Controller
      */
     public function store(BlogRequest $request)
     {
-        Blog::create($request->validated() + ['user_id' => auth()->id(), 'slug' => Str::slug($request->title)]);
-        return back()->with('status',config('alert.blog.create'));
+        Blog::create($request->validated() + ['user_id' => auth()->id(), 'thumbnail' => request()->file('thumbnail')->store('thumbnails')]);
+        return redirect('/')->with('status',config('alert.blog.create'));
     }
 
     /**
