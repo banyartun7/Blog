@@ -15,8 +15,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('blogs.create', compact('categories'));
+        $blogs = Blog::latest()->paginate(6);
+        return view('blogs.dashboard', compact('blogs'));
     }
 
     /**
@@ -24,7 +24,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('blogs.create', compact('categories'));
     }
 
     /**
@@ -63,8 +64,9 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Blog $blog)
     {
-        //
+        $blog->delete();
+        return redirect('/admin/blogs')->with('status', config('alert.admin.delete'));
     }
 }

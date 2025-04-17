@@ -38,8 +38,13 @@ class AuthController extends Controller
         [
             'email.required' => 'We need your email address'
         ]);
+
         if(auth()->attempt($formData)){
-            return redirect('/')->with('status', config('alert.message.login'));
+            if(auth()->user()->is_admin){
+                return redirect('/admin/blogs')->with('status', config('alert.admin.login').auth()->user()->name);
+            }else{
+                return redirect('/')->with('status', config('alert.message.login'));
+            }
         }else{
             return redirect()->back()->withErrors([
                 'email' => 'User Credentials wrong'

@@ -14,5 +14,9 @@ return [
     ],
     'blog' => [
         'create' => 'Blog created successful'
+    ],
+    'admin' => [
+        'login' => 'Welcome admin, ',
+        'delete' => 'Deleted blog successful'
     ]
 ];
