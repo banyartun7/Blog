@@ -15,7 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::latest()->paginate(6);
+        $blogs = Blog::latest()->paginate(3);
         return view('blogs.dashboard', compact('blogs'));
     }
 
@@ -48,9 +48,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Blog $blog)
     {
-        //
+        $categories = Category::all();
+        return view('blogs.edit', compact('blog', 'categories'));
     }
 
     /**
@@ -58,7 +59,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        dd('hit');
     }
 
     /**

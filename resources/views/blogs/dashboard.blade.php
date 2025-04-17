@@ -31,18 +31,19 @@
                         <td><img width="70" height="70" src="{{ asset('storage/' . $blog->thumbnail) }}" /></td>
                         <td>
                             <div class="d-flex align-items-center justify-content-between">
-                                <a href="#" class="text-warning">Edit</a>
+                                <a href="{{ route('blogs.edit', $blog->id) }}" class="text-warning">Edit</a>
                                 <form method="POST" action="{{ route('blogs.destroy', $blog->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="nav-link btn btn-link text-danger">Delete</button>
+                                    <button onclick="return confirm('Are you sure to delete this blog?')" type="submit"
+                                        class="nav-link btn btn-link text-danger">Delete</button>
                                 </form>
                             </div>
-
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </x-card-wrapper>
+    {{ $blogs->links() }}
 </x-admin-layout>
