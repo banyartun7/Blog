@@ -7,6 +7,9 @@
                 <img width="40" height="40" class="rounded-circle"
                     src="{{ asset('images/' . auth()->user()->avatar) }}" />
                 <a href="/" class="nav-link">{{ auth()->user()->name }}</a>
+                @can('admin')
+                    <a href="{{ route('blogs.index') }}" class="nav-link">Dashboard</a>
+                @endcan
                 <form action="/logout" method="post">
                     @csrf
                     <button class="nav-link btn btn-link" type="submit">Logout</button>

@@ -20,4 +20,6 @@ Route::post('/blogs/{blog:slug}/comments', [CommentController::class, 'store']);
 Route::post('/blogs/{blog:slug}/subscription', [subscribeController::class, 'subscriptionHandler']);
 
 //Admin Routes
-Route::resource('/admin/blogs', AdminController::class)->middleware('admin');
+Route::middleware('can:admin')->group(function(){
+    Route::resource('/admin/blogs', AdminController::class);
+});
