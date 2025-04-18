@@ -17,6 +17,7 @@ return [
     ],
     'admin' => [
         'login' => 'Welcome admin, ',
-        'delete' => 'Deleted blog successful'
+        'delete' => 'Deleted blog successful',
+        'update' => 'Blog updated successful'
     ]
 ];

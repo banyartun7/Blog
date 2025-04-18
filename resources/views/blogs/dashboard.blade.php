@@ -23,7 +23,7 @@
                 @foreach ($blogs as $blog)
                     <tr>
                         <th scope="row">{{ $blog->id }}</th>
-                        <td>{{ $blog->title }}</td>
+                        <td><a href="/blogs/{{ $blog->slug }}" target="_blank">{{ $blog->title }}</a></td>
                         <td>{{ $blog->slug }}</td>
                         <td>{{ $blog->intro }}</td>
                         <td>{{ substr($blog->body, 0, 100) }}</td>

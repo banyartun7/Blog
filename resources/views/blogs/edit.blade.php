@@ -17,9 +17,9 @@
                 <select class="form-control" name="category_id">
                     <option value="">Category</option>
                     @foreach ($categories as $category)
-                        <option {{ $category->id == $blog->category->id ? 'selected' : '' }}
+                        <option {{ $category->id == old('category_id', $blog->category->id) ? 'selected' : '' }}
                             value="{{ $category->id }}">
-                            {{ $blog->category->name }}</option>
+                            {{ $category->name }}</option>
                     @endforeach
                 </select>
                 <x-error name="category_id" />
@@ -30,7 +30,7 @@
             <img width="110" class="d-block img-fluid mb-3" height="80"
                 src="{{ asset('storage/' . $blog->thumbnail) }}" />
             <button type="submit" class="btn btn-primary">
-                Create
+                Update
             </button>
         </form>
     </x-card-wrapper>

@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\BlogRequest;
+use App\Http\Requests\UpdateBlogRequest;
 
 class AdminController extends Controller
 {
@@ -57,9 +58,10 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateBlogRequest $request, Blog $blog)
     {
-        dd('hit');
+        $blog->update($request->validated() + ['thumbnail' => empty(request('thumbnail')) ? $blog->thumbnail : request('thumbnail')->store('thumbnails')]);
+        return redirect('/')->with('status',config('alert.blog.update'));
     }
 
     /**
